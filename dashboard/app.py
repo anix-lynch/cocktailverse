@@ -23,12 +23,48 @@ st.set_page_config(
 def init_bigquery_client():
     """Initialize BigQuery client with cached connection"""
     project_id = os.getenv('PROJECT_ID', 'maps-platform-20251011-140544')
+    
+    # Try to get credentials from Streamlit secrets (for Streamlit Cloud)
+    credentials = None
     try:
-        client = bigquery.Client(project=project_id)
+        import json
+        from google.oauth2 import service_account
+        
+        # Check if service account key is in Streamlit secrets
+        if 'gcp' in st.secrets and 'service_account_key' in st.secrets['gcp']:
+            service_account_info = json.loads(st.secrets['gcp']['service_account_key'])
+            credentials = service_account.Credentials.from_service_account_info(
+                service_account_info
+            )
+            st.success("✅ Using service account credentials from Streamlit secrets")
+    except Exception as e:
+        st.warning(f"Could not load credentials from secrets: {e}")
+        # Fall back to default credentials (for local dev)
+        credentials = None
+    
+    try:
+        if credentials:
+            client = bigquery.Client(project=project_id, credentials=credentials)
+        else:
+            # Try default credentials (for local development)
+            client = bigquery.Client(project=project_id)
         return client, project_id
     except Exception as e:
         st.error(f"Failed to connect to BigQuery: {e}")
-        st.info("Make sure GCP credentials are configured (gcloud auth application-default login)")
+        st.info("""
+        **For Streamlit Cloud:**
+        1. Go to Settings → Secrets
+        2. Add your GCP service account JSON:
+        ```toml
+        [gcp]
+        service_account_key = """
+        {paste your service account JSON here}
+        """
+        ```
+        
+        **For local development:**
+        Run: `gcloud auth application-default login`
+        """)
         return None, project_id
 
 # Get client
