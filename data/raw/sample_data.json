@@ -1,0 +1,45 @@
+[
+  {
+    "cocktail_id": "11007",
+    "name": "Margarita",
+    "category": "Ordinary Drink",
+    "alcoholic": "Alcoholic",
+    "glass": "Cocktail glass",
+    "instructions": "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.",
+    "ingredients": ["1 1/2 oz Tequila", "1/2 oz Triple sec", "1 oz Lime juice", "Salt"],
+    "image_url": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+    "tags": ["IBA", "ContemporaryClassic"],
+    "iba": "Contemporary Classics",
+    "source": "TheCocktailDB",
+    "fetched_at": "2025-01-15T12:00:00Z"
+  },
+  {
+    "cocktail_id": "11000",
+    "name": "Mojito",
+    "category": "Cocktail",
+    "alcoholic": "Alcoholic",
+    "glass": "Highball glass",
+    "instructions": "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.",
+    "ingredients": ["White rum", "Lime", "Sugar", "Mint", "Soda water"],
+    "image_url": "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
+    "tags": ["IBA", "ContemporaryClassic"],
+    "iba": "Contemporary Classics",
+    "source": "TheCocktailDB",
+    "fetched_at": "2025-01-20T12:00:00Z"
+  },
+  {
+    "cocktail_id": "11001",
+    "name": "Old Fashioned",
+    "category": "Ordinary Drink",
+    "alcoholic": "Alcoholic",
+    "glass": "Old-fashioned glass",
+    "instructions": "Place sugar cube in old fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolved. Fill the glass with ice cubes and add whiskey. Garnish with orange twist, and a cocktail cherry.",
+    "ingredients": ["Bourbon", "Angostura bitters", "Sugar", "Orange peel"],
+    "image_url": "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
+    "tags": ["IBA", "Classic"],
+    "iba": "Unforgettables",
+    "source": "TheCocktailDB",
+    "fetched_at": "2025-01-18T12:00:00Z"
+  }
+]
+

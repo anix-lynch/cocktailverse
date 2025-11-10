@@ -1,0 +1,87 @@
+[
+  {
+    "name": "cocktail_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Unique cocktail identifier from TheCocktailDB API"
+  },
+  {
+    "name": "name",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Cocktail name"
+  },
+  {
+    "name": "category",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Cocktail category (e.g., 'Ordinary Drink', 'Cocktail')"
+  },
+  {
+    "name": "alcoholic",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Whether cocktail is alcoholic ('Alcoholic', 'Non alcoholic', 'Optional alcohol')"
+  },
+  {
+    "name": "glass",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Recommended glass type (e.g., 'Cocktail glass', 'Highball glass')"
+  },
+  {
+    "name": "instructions",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Preparation instructions"
+  },
+  {
+    "name": "ingredients",
+    "type": "STRING",
+    "mode": "REPEATED",
+    "description": "List of ingredients with measures (e.g., '1 1/2 oz Tequila')"
+  },
+  {
+    "name": "image_url",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "URL to cocktail image"
+  },
+  {
+    "name": "tags",
+    "type": "STRING",
+    "mode": "REPEATED",
+    "description": "Cocktail tags (e.g., 'IBA', 'ContemporaryClassic')"
+  },
+  {
+    "name": "iba",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "International Bartenders Association category if applicable"
+  },
+  {
+    "name": "video_url",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "URL to preparation video if available"
+  },
+  {
+    "name": "source",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Data source (e.g., 'TheCocktailDB')"
+  },
+  {
+    "name": "fetched_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "Timestamp when cocktail was fetched from API"
+  },
+  {
+    "name": "processed_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "Timestamp when the record was processed and loaded"
+  }
+]
+

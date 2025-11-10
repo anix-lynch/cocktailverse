@@ -1,0 +1,27 @@
+# Google Cloud Platform dependencies
+google-cloud-storage==2.14.0
+google-cloud-bigquery==3.13.0
+functions-framework==3.5.0
+
+# FastAPI and web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Data validation and serialization
+pydantic==2.5.0
+
+# HTTP requests (for API fetching)
+requests==2.31.0
+
+# Date and time utilities
+python-dateutil==2.8.2
+
+# Development and testing (optional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
+
+# Streamlit dashboard
+streamlit==1.28.1
+pandas==2.1.3
+

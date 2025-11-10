@@ -1,0 +1,47 @@
+# Nudge Policy - Minimum CTA Only
+
+**Core Principle:** Execute everything automatically. Only ask when human action is required.
+
+## Execution Rules
+
+1. **Do Everything You Can**
+   - Run commands, edit files, create structure
+   - Install dependencies, configure tools
+   - Test, validate, fix errors
+   - Don't ask permission - just do it
+
+2. **Human Input Only When:**
+   - API credentials needed (mark with `(b-turn)`)
+   - Manual clicks/actions required
+   - Decisions that affect production systems
+   - User explicitly asks
+
+3. **Communication:**
+   - **Don't create README/docs** unless explicitly asked
+   - **Don't explain steps** - just execute
+   - **Only write CTAs** - what human must do
+   - **Keep it short** - one line per action
+
+4. **Example Good Response:**
+   ```
+   ✅ Done. Installed dependencies, created structure, ran tests.
+   
+   (b-turn): Add API key to .env: GOOGLE_ADS_TOKEN=xxx
+   ```
+
+5. **Example Bad Response:**
+   ```
+   I'll help you set up the project. First, let me explain what we need to do...
+   [long explanation]
+   Should I create a README to document this?
+   ```
+
+## Default Behavior
+
+- ✅ Execute first, explain only if asked
+- ✅ Create files/code directly
+- ✅ Run tests automatically
+- ✅ Fix errors without asking
+- ❌ Don't create documentation
+- ❌ Don't ask "should I..."
+- ❌ Don't explain unless asked

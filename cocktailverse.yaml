@@ -1,0 +1,63 @@
+project:
+  id: 3
+  name: Cocktailverse (GCP ETL)
+  purpose: >
+    Serverless GCP ETL pipeline fetching cocktails from TheCocktailDB API,
+    transforming via Cloud Functions, and storing in BigQuery. Demonstrates
+    event-driven architecture, creative schema reuse, and 100% free tier usage.
+  flow:
+    - TheCocktailDB API → Fetch Cloud Function → GCS → Transform Cloud Function → BigQuery
+    - Event-driven triggers (GCS uploads auto-trigger transformation)
+    - FastAPI test harness for local querying
+  architecture:
+    - Ingest: TheCocktailDB API (free, no key required)
+    - Transform: Cloud Functions Gen2 (event-driven, serverless)
+    - Store: GCS bucket (raw) → BigQuery (warehouse)
+    - Query: FastAPI local server (future: Streamlit Cloud dashboard)
+  deliverables:
+    - gcf/fetch_cocktails.py (fetches from API, transforms to job format)
+    - gcf/transform.py (validates, normalizes, enriches data)
+    - gcf/main.py (Cloud Function entry point)
+    - bq/schema.json (BigQuery table structure)
+    - bq/bq_queries.sql (analytics queries)
+    - api/test_harness.py (local FastAPI query server)
+    - scripts/gcs_setup.sh (bucket creation)
+    - scripts/deploy_gcf.sh (transform function deployment)
+    - scripts/deploy_fetch_gcf.sh (fetch function deployment)
+  stack:
+    - GCS
+    - Cloud Functions Gen2
+    - BigQuery
+    - FastAPI
+    - TheCocktailDB API
+    - Python 3.11
+  cli_entry:
+    - gcloud functions call cocktailverse-fetch-cocktails --region=us-central1 --data '{"fetch_type":"random","limit":3}'
+    - python api/test_harness.py
+  cost: $0/month (100% GCP Free Tier)
+  keywords:
+    - ETL
+    - ELT
+    - GCP
+    - Cloud Functions
+    - BigQuery
+    - GCS
+    - Event-Driven Architecture
+    - Serverless
+    - Eventarc
+    - TheCocktailDB API
+    - FastAPI
+    - Data Warehousing
+    - Data Quality
+    - Python
+    - JSON
+    - REST API
+    - Cloud Storage
+    - Analytics
+  mcp_role: GCP Cloud ETL MCP
+  creative_note: >
+    Purpose-built cocktail schema with all relevant fields (category, alcoholic, glass, ingredients, etc.)
+  extension:
+    - Streamlit Cloud dashboard (dashboard/app.py ready to deploy)
+    - Bridges with Resume MCP data via shared schema adapter
+
