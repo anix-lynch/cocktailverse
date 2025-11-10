@@ -1,0 +1,7 @@
+# Minimal requirements for Streamlit Cloud deployment
+# This file can be specified in Streamlit Cloud settings if root requirements.txt has conflicts
+
+streamlit>=1.28.0
+pandas>=2.0.0
+google-cloud-bigquery>=3.13.0
+
