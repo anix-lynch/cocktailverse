@@ -72,9 +72,9 @@ bq_client, PROJECT_ID = init_bigquery_client()
 DATASET_ID = os.getenv('DATASET_ID', 'cocktailverse')
 TABLE_ID = os.getenv('TABLE_ID', 'cocktails')
 
-# Header
-st.title("🍹 Cocktailverse Dashboard")
-st.markdown("**Real-time cocktail analytics from TheCocktailDB**")
+# Header with ATS keywords
+st.title("🍹 Cocktailverse: GCP BigQuery ETL Pipeline Dashboard")
+st.markdown("**Real-time Analytics | Python • BigQuery • Cloud Run • ETL • API Integration**")
 
 if not bq_client:
     st.stop()
