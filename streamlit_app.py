@@ -221,12 +221,13 @@ with tab2:
                 if 'iba' in row and pd.notna(row['iba']):
                     cols[3].write(f"**IBA:** {row['iba']}")
                 
-                if 'ingredients' in row:
+                if 'ingredients' in row and row['ingredients']:
+                    # Convert Series to Python native type to avoid ambiguous truth value
                     ingredients = row['ingredients']
-                    if ingredients and isinstance(ingredients, list):
+                    if isinstance(ingredients, list) and len(ingredients) > 0:
                         st.write(f"**Ingredients:** {', '.join(str(i) for i in ingredients[:5])}")
                     elif ingredients:
-                        st.write(f"**Ingredients:** {ingredients}")
+                        st.write(f"**Ingredients:** {str(ingredients)}")
                 
                 if 'instructions' in row and pd.notna(row['instructions']):
                     with st.expander("Instructions"):
@@ -277,12 +278,13 @@ with tab4:
         
         for idx, row in search_results.iterrows():
             st.write(f"**{row.get('name', 'Unknown')}** - {row.get('category', 'N/A')}")
-            if 'ingredients' in row:
+            if 'ingredients' in row and row['ingredients']:
+                # Convert Series to Python native type to avoid ambiguous truth value
                 ingredients = row['ingredients']
-                if ingredients and isinstance(ingredients, list):
+                if isinstance(ingredients, list) and len(ingredients) > 0:
                     st.write(f"Ingredients: {', '.join(str(i) for i in ingredients)}")
                 elif ingredients:
-                    st.write(f"Ingredients: {ingredients}")
+                    st.write(f"Ingredients: {str(ingredients)}")
             st.divider()
 
 # Footer
