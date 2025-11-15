@@ -1,7 +1,5 @@
-# Streamlit Cloud - Minimal requirements for dashboard
-# Note: Full requirements for local development are in requirements-full.txt
-streamlit>=1.28.0
-pandas>=2.0.0
-google-cloud-bigquery>=3.13.0
-google-auth>=2.23.0
+# Streamlit Cloud compatible dependencies (distro dojo)
+streamlit==1.28.1
+pandas==2.0.3
+google-cloud-bigquery==3.13.0
 
