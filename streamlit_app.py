@@ -212,11 +212,11 @@ with tab2:
                 if 'iba' in row and pd.notna(row['iba']):
                     cols[3].write(f"**IBA:** {row['iba']}")
                 
-                if 'ingredients' in row and pd.notna(row['ingredients']):
+                if 'ingredients' in row:
                     ingredients = row['ingredients']
-                    if isinstance(ingredients, list):
-                        st.write(f"**Ingredients:** {', '.join(ingredients[:5])}")
-                    else:
+                    if ingredients and isinstance(ingredients, list):
+                        st.write(f"**Ingredients:** {', '.join(str(i) for i in ingredients[:5])}")
+                    elif ingredients:
                         st.write(f"**Ingredients:** {ingredients}")
                 
                 if 'instructions' in row and pd.notna(row['instructions']):
