@@ -36,10 +36,8 @@ def init_bigquery_client():
             credentials = service_account.Credentials.from_service_account_info(
                 service_account_info
             )
-            st.success("✅ Using service account credentials from Streamlit secrets")
-    except Exception as e:
-        st.warning(f"Could not load credentials from secrets: {e}")
-        # Fall back to default credentials (for local dev)
+    except Exception:
+        # Fall back to default credentials (for Cloud Run / local dev with gcloud)
         credentials = None
     
     try:
