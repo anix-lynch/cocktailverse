@@ -57,9 +57,9 @@ def init_bigquery_client():
         2. Add your GCP service account JSON:
         ```toml
         [gcp]
-        service_account_key = """
+        service_account_key = \"\"\"
         {paste your service account JSON here}
-        """
+        \"\"\"
         ```
         
         **For local development:**
