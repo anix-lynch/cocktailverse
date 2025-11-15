@@ -266,11 +266,11 @@ with tab4:
         
         for idx, row in search_results.iterrows():
             st.write(f"**{row.get('name', 'Unknown')}** - {row.get('category', 'N/A')}")
-            if 'ingredients' in row and pd.notna(row['ingredients']):
+            if 'ingredients' in row:
                 ingredients = row['ingredients']
-                if isinstance(ingredients, list):
-                    st.write(f"Ingredients: {', '.join(ingredients)}")
-                else:
+                if ingredients and isinstance(ingredients, list):
+                    st.write(f"Ingredients: {', '.join(str(i) for i in ingredients)}")
+                elif ingredients:
                     st.write(f"Ingredients: {ingredients}")
             st.divider()
 
