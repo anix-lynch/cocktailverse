@@ -30,15 +30,17 @@ def init_bigquery_client():
         import json
         from google.oauth2 import service_account
         
-        # Check if service account key is in Streamlit secrets
-        if 'gcp' in st.secrets and 'service_account_key' in st.secrets['gcp']:
-            service_account_info = json.loads(st.secrets['gcp']['service_account_key'])
-            credentials = service_account.Credentials.from_service_account_info(
-                service_account_info
-            )
+        # Use .get() to avoid "No secrets files found" warning (mocktailverse pattern)
+        if hasattr(st, 'secrets'):
+            gcp_secrets = st.secrets.get('gcp', {})
+            if 'service_account_key' in gcp_secrets:
+                service_account_info = json.loads(gcp_secrets['service_account_key'])
+                credentials = service_account.Credentials.from_service_account_info(
+                    service_account_info
+                )
     except Exception:
-        # Fall back to default credentials (for Cloud Run / local dev with gcloud)
-        credentials = None
+        # Silently fall back to default credentials (for Cloud Run / local dev)
+        pass
     
     try:
         if credentials:
@@ -79,6 +81,15 @@ if not bq_client:
 
 # Sidebar filters
 st.sidebar.header("🔍 Filters")
+
+# Add cost estimate sidebar (mocktailverse pattern)
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 💰 GCP Cost Estimate")
+st.sidebar.caption("**Cloud Run**: $0.05/month (Free tier)")
+st.sidebar.caption("**BigQuery Storage**: $0.10/month (Free tier)")
+st.sidebar.caption("**BigQuery Queries**: $0.01/month (Free tier)")
+st.sidebar.caption("**Total Estimated**: **$0.16/month**")
+st.sidebar.markdown("*Based on typical usage with GCP Free Tier*")
 
 # Query cocktails
 @st.cache_data(ttl=300)  # Cache for 5 minutes
