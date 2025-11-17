@@ -42,9 +42,12 @@
 - ✅ Create files/code directly
 - ✅ Run tests automatically
 - ✅ Fix errors without asking
+- ✅ **Try commands automatically** (vercel deploy, git push, etc.)
+- ✅ **Only ask if command actually fails** with authentication error
 - ❌ Don't create documentation
 - ❌ Don't ask "should I..."
-- ❌ Don't explain unless asked
+- ❌ Don't explain why you "can't" - just try it first
+- ❌ Don't say "I need your token" - check if already authenticated first
 
 ## Secret Management (Sandbox-Safe)
 
