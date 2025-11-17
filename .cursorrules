@@ -45,3 +45,30 @@
 - ❌ Don't create documentation
 - ❌ Don't ask "should I..."
 - ❌ Don't explain unless asked
+
+## Secret Management (Sandbox-Safe)
+
+**Problem:** Some Cursor AI instances are sandboxed and can't access `~/.config/secrets/global.env`
+
+**Solution:** Always use workspace-relative secret loading:
+
+### For Python:
+```python
+from scripts.get_secret import get_secret
+api_key = get_secret('GOOGLE_MAPS_API_KEY')
+```
+
+### For Shell Scripts:
+```bash
+# Source the loader (works in both sandboxed and non-sandboxed)
+source scripts/load_secrets.sh
+# Or if that fails, try:
+eval $(scripts/load_secrets.sh)
+```
+
+### For Direct Access:
+- **First try:** `~/.config/secrets/global.env` (if accessible)
+- **Fallback:** `.env` in project root (always accessible)
+- **Never hardcode** secrets in code
+
+**Pattern:** Always check multiple locations, never assume filesystem access.
