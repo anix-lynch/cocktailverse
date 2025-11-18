@@ -30,17 +30,21 @@ def init_bigquery_client():
         import json
         from google.oauth2 import service_account
         
-        # Check if service account key is in Streamlit secrets
-        if 'gcp' in st.secrets and 'service_account_key' in st.secrets['gcp']:
-            service_account_info = json.loads(st.secrets['gcp']['service_account_key'])
-            credentials = service_account.Credentials.from_service_account_info(
-                service_account_info
-            )
-            st.success("✅ Using service account credentials from Streamlit secrets")
-    except Exception as e:
-        st.warning(f"Could not load credentials from secrets: {e}")
-        # Fall back to default credentials (for local dev)
-        credentials = None
+        # Check if secrets are available (avoid "No secrets files found" warning)
+        if hasattr(st, 'secrets') and st.secrets is not None:
+            try:
+                if 'gcp' in st.secrets and 'service_account_key' in st.secrets['gcp']:
+                    service_account_info = json.loads(st.secrets['gcp']['service_account_key'])
+                    credentials = service_account.Credentials.from_service_account_info(
+                        service_account_info
+                    )
+                    st.success("✅ Using service account credentials from Streamlit secrets")
+            except (AttributeError, KeyError, TypeError):
+                # Secrets not configured, use default credentials
+                pass
+    except Exception:
+        # Silently fall back to default credentials (for Cloud Run / local dev)
+        pass
     
     try:
         if credentials:

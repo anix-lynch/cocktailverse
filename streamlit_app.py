@@ -30,14 +30,18 @@ def init_bigquery_client():
         import json
         from google.oauth2 import service_account
         
-        # Use .get() to avoid "No secrets files found" warning (mocktailverse pattern)
-        if hasattr(st, 'secrets'):
-            gcp_secrets = st.secrets.get('gcp', {})
-            if 'service_account_key' in gcp_secrets:
-                service_account_info = json.loads(gcp_secrets['service_account_key'])
-                credentials = service_account.Credentials.from_service_account_info(
-                    service_account_info
-                )
+        # Check if secrets are available (avoid "No secrets files found" warning)
+        if hasattr(st, 'secrets') and st.secrets is not None:
+            try:
+                gcp_secrets = st.secrets.get('gcp', {})
+                if gcp_secrets and 'service_account_key' in gcp_secrets:
+                    service_account_info = json.loads(gcp_secrets['service_account_key'])
+                    credentials = service_account.Credentials.from_service_account_info(
+                        service_account_info
+                    )
+            except (AttributeError, KeyError, TypeError):
+                # Secrets not configured, use default credentials
+                pass
     except Exception:
         # Silently fall back to default credentials (for Cloud Run / local dev)
         pass
